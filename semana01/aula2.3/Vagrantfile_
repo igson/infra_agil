@@ -1,0 +1,22 @@
+#delcarção de variáveis
+SERVER_NAME_A="centos-server"
+SERVER_NAME_B="ubuntu-server"
+
+NETWORK = "10.5.25."
+
+BOX_DISTRO_CENTOS = "centos/7"
+BOX_DISTRO_UBUNTU = "ubuntu/bionic64"
+
+# fim - declaração de variáveis
+
+Vagrant.configure("2") do |config|
+  config.vm.define SERVER_NAME_A do |server1|
+    server1.vm.box = BOX_DISTRO_CENTOS
+    server1.vm.network "private_network", ip: NETWORK+"10"
+  end
+
+  config.vm.define SERVER_NAME_B do |server2|
+    server2.vm.box = BOX_DISTRO_UBUNTU
+    server2.vm.network "private_network", ip: NETWORK+"20"
+  end
+end
